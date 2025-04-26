@@ -20,22 +20,26 @@ import ImageModal from '../ImageModal/ImageModal';
 
 import css from './App.module.css';
 
+import { Article } from '../../types/article';
+
 function App() {
-  const [photosData, setPhotosData] = useState([]);
+  const [photosData, setPhotosData] = useState<Article[]>([]);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
-  const [photosTerm, setPhotosTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [lastPageNum, setLastPageNum] = useState(0);
-  const [totalPhotosNum, setTotalPhotosNum] = useState(0);
-  const [somethingSearched, setSomethingSearched] = useState(false);
+  const [photosTerm, setPhotosTerm] = useState<string>('');
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [lastPageNum, setLastPageNum] = useState<number>(0);
+  const [totalPhotosNum, setTotalPhotosNum] = useState<number>(0);
+  const [somethingSearched, setSomethingSearched] = useState<boolean>(false);
 
-  const [photoForModal, setPhotoForModal] = useState(null);
-  const [modalAltDescription, setModalAltDescription] = useState(null);
+  const [photoForModal, setPhotoForModal] = useState<null | string>(null);
+  const [modalAltDescription, setModalAltDescription] = useState<null | string>(
+    null
+  );
 
-  const handleSubmit = searchQuery => {
+  const handleSubmit = (searchQuery: string): void => {
     const uniqueQueryId = nanoid();
     setPhotosTerm(`${searchQuery}|${uniqueQueryId}`);
     setCurrentPage(1);
@@ -76,7 +80,10 @@ function App() {
     setPhotosData([]);
     setSomethingSearched(false);
   };
-  const handleOpenModal = (modalPhotoUlr, altDescriptionForModal) => {
+  const handleOpenModal = (
+    modalPhotoUlr: string,
+    altDescriptionForModal: string
+  ) => {
     setPhotoForModal(modalPhotoUlr);
     setModalAltDescription(altDescriptionForModal);
   };
