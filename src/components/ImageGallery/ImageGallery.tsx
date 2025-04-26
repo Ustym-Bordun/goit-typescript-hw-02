@@ -1,20 +1,24 @@
 import ImageCard from '../ImageCard/ImageCard';
 import css from './ImageGallery.module.css';
 
-const ImageGallery = ({ photos, onOpenModal }) => {
+import { Article } from '../../types/article';
+import { ModalOpenHandler } from '../../types/modalOpenHandler';
+
+interface ImageGalleryProps {
+  photos: Article[];
+  onOpenModal: ModalOpenHandler;
+}
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({ photos, onOpenModal }) => {
   return (
     <ul className={css.list}>
       {photos.map(photo => {
         const {
           id,
-          // created_at,
           likes,
           description,
           alt_description,
-          user: {
-            name,
-            // portfolio_url
-          },
+          user: { name },
           urls,
         } = photo;
 

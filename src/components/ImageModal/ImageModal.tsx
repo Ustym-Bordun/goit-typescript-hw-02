@@ -5,8 +5,19 @@ Modal.setAppElement('#root');
 
 import css from './ImageModal.module.css';
 
-const ImageModal = ({ photo, onModalClose, altDescription }) => {
+interface ImageModalProps {
+  photo: string | null;
+  onModalClose: () => void;
+  altDescription: string | null;
+}
+
+const ImageModal: React.FC<ImageModalProps> = ({
+  photo,
+  onModalClose,
+  altDescription,
+}) => {
   const isOpen = Boolean(photo);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -65,7 +76,7 @@ const ImageModal = ({ photo, onModalClose, altDescription }) => {
     >
       <img
         className={css.image}
-        src={photo}
+        src={photo || ''}
         alt={
           altDescription
             ? altDescription.slice(0, 1).toUpperCase() + altDescription.slice(1)

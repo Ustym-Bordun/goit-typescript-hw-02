@@ -21,8 +21,9 @@ import ImageModal from '../ImageModal/ImageModal';
 import css from './App.module.css';
 
 import { Article } from '../../types/article';
+import { ModalOpenHandler } from '../../types/modalOpenHandler';
 
-function App() {
+const App: React.FC = () => {
   const [photosData, setPhotosData] = useState<Article[]>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -80,11 +81,11 @@ function App() {
     setPhotosData([]);
     setSomethingSearched(false);
   };
-  const handleOpenModal = (
-    modalPhotoUlr: string,
-    altDescriptionForModal: string
+  const handleOpenModal: ModalOpenHandler = (
+    modalPhotoUrl,
+    altDescriptionForModal
   ) => {
-    setPhotoForModal(modalPhotoUlr);
+    setPhotoForModal(modalPhotoUrl);
     setModalAltDescription(altDescriptionForModal);
   };
   const handleCloseModal = () => {
@@ -140,6 +141,6 @@ function App() {
       />
     </>
   );
-}
+};
 
 export default App;

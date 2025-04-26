@@ -1,6 +1,17 @@
 import css from './ImageCard.module.css';
 
-const ImageCard = ({
+import { ModalOpenHandler } from '../../types/modalOpenHandler';
+
+interface ImageCardProps {
+  likes: number;
+  description: string | null;
+  alt_description: string | null;
+  name: string;
+  urls: { small: string; regular: string };
+  onOpenModal: ModalOpenHandler;
+}
+
+const ImageCard: React.FC<ImageCardProps> = ({
   likes,
   description,
   alt_description,

@@ -18,7 +18,11 @@ import css from './SearchBar.module.css';
 import Section from '../Section/Section';
 import Container from '../Container/Container';
 
-const SearchBar = ({ onSubmit }) => {
+type SearchBarProps = {
+  onSubmit: (query: string) => void;
+};
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   return (
     <Section>
       <Container>
@@ -27,7 +31,13 @@ const SearchBar = ({ onSubmit }) => {
             className={css.form}
             onSubmit={e => {
               e.preventDefault();
-              const value = e.target.elements.searchQueryInput.value;
+              const form = e.currentTarget;
+
+              const input = form.elements.namedItem(
+                'searchQueryInput'
+              ) as HTMLInputElement;
+
+              const value = input.value;
 
               if (value === '') {
                 notify();
@@ -35,7 +45,7 @@ const SearchBar = ({ onSubmit }) => {
               }
 
               onSubmit(value);
-              e.target.reset();
+              form.reset();
             }}
           >
             <input

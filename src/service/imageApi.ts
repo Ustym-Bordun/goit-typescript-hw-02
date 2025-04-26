@@ -1,7 +1,17 @@
 import axios from 'axios';
+import { Article } from '../types/article';
 
-const fetchPhotos = async (query, currentPage) => {
-  const responce = await axios.get('/search/photos', {
+interface UnsplashResponse {
+  results: Article[];
+  total: number;
+  total_pages: number;
+}
+
+const fetchPhotos = async (
+  query: string,
+  currentPage: number
+): Promise<UnsplashResponse> => {
+  const responce = await axios.get<UnsplashResponse>('/search/photos', {
     baseURL: 'https://api.unsplash.com/',
     params: {
       query: query,
@@ -12,6 +22,7 @@ const fetchPhotos = async (query, currentPage) => {
   });
 
   // console.log(responce);
+  // console.log(responce.data);
   return responce.data;
 };
 

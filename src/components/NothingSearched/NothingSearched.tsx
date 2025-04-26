@@ -4,7 +4,9 @@ import { MdWavingHand } from 'react-icons/md';
 
 import css from './NothingSearched.module.css';
 
-const NothingSearched = () => {
+interface NothingSearchedProps {}
+
+const NothingSearched: React.FC<NothingSearchedProps> = () => {
   return (
     <>
       <div className={css.wrapper}>

@@ -2,7 +2,7 @@ import { BeatLoader } from 'react-spinners';
 
 // import css from './Loader.module.css';
 
-const Loader = () => (
+const Loader: React.FC = () => (
   // <div className={css.wrapper}>
   <BeatLoader
     color="rgba(27, 40, 227, 0.85)"
